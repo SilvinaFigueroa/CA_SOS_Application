@@ -1,6 +1,2 @@
 gRPC_CA/SOSGUI.java
  gRPC_CA.SOSGUI
-gRPC_CA/Hello.java
- gRPC_CA.Hello
-gRPC_CA/GUI_SOS.java
- gRPC_CA.GUI_SOS

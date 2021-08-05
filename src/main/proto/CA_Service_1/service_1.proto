@@ -1,0 +1,14 @@
+
+syntax = "proto3";
+
+package CA_Service_1;
+
+option java_package = "com.proto.CA_Service_1";
+option java_multiple_files = true;
+
+message HelpMessage {}
+
+service HelpMessageService {}
+
+
+

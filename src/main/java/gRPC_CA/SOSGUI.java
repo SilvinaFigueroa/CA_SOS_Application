@@ -7,14 +7,15 @@ public class SOSGUI extends JFrame {
     private JButton helpMeButton;
     private JComboBox locationOptions;
     private JComboBox typeServices;
-    private JRadioButton areYouHurtSituation;
-    private JRadioButton areYouAloneSituation;
+    private JCheckBox areYouHurtSituation;
+    private JCheckBox areYouAloneSituation;
     private JButton closeAppButton;
     private JButton situationCall;
     private JButton typeServiceCall;
     private JButton locationCall;
     private JPanel LeftPanelMargin;
     private JPanel RightPanelMargin;
+    private JCheckBox noneOfAboveSituation;
 
     // Constructor
     public SOSGUI(String title){
