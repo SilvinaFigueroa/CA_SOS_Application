@@ -7,12 +7,12 @@ option java_package = "com.proto.CA_Service_1";
 option java_multiple_files = true;
 
 message HelpMessageRequest {
-    string helpButtonRequest = 1;
+    string helpRequest = 1;
 
 }
 
 message HelpMessageResponse{
-    string helpButtonResponse = 1;
+    string helpResponse = 1;
 
 }
 
