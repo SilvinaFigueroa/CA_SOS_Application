@@ -1,4 +1,4 @@
-package gRPC_CA;
+package gRPC_CA.Server;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;

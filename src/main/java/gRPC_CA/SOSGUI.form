@@ -6,6 +6,7 @@
       <xy x="158" y="69" width="364" height="1010"/>
     </constraints>
     <properties>
+      <background color="-1379598"/>
       <enabled value="true"/>
     </properties>
     <border type="none" title-position="3">
@@ -39,6 +40,7 @@
           <grid row="2" column="1" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="2" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <enabled value="true"/>
           <horizontalTextPosition value="2"/>
           <text value="Help me! "/>
         </properties>
