@@ -19,12 +19,21 @@ message HelpMessageResponse{
 
 message UserDataRequest{
 
+        enum EmergencySituation{
 
+            MedicalAssistance  =0;
+            CarAccident =1;
+            DomesticViolence = 2;
+            Other = 3;
+        }
+
+    EmergencySituation emergencySit = 3;
 }
 
 
 message UserDataResponse{
 
+  string situationResponse =1;
 
 }
 

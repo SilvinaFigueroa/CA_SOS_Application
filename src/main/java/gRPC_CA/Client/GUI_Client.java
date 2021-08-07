@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 //import ds.service3.Service3Grpc;
 //import ds.service4.Service4Grpc;
 
+import com.proto.CA_Service_1.UserDataRequest;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -63,16 +64,22 @@ public class GUI_Client implements ActionListener{
 
         BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.X_AXIS);
 
-        JLabel label = new JLabel("Enter value")	;
-        panel.add(label);
-        panel.add(Box.createRigidArea(new Dimension(10, 0)));
-        entry2 = new JTextField("",10);
-        panel.add(entry2);
+        JComboBox comboOperation = new JComboBox();
+        comboOperation.setModel(new DefaultComboBoxModel(new String[] {"Medical Assistance", "Car Accident", "Domestic Violence", "Other"}));
+        panel.add(comboOperation);
+
+        int situation = comboOperation.getSelectedIndex();
+        UserDataRequest.EmergencySituation operation = UserDataRequest.EmergencySituation.forNumber(situation);
         panel.add(Box.createRigidArea(new Dimension(10, 0)));
 
         JButton button = new JButton("Invoke Service 2");
         button.addActionListener(this);
         panel.add(button);
+        JLabel label = new JLabel("Enter value")	;
+        panel.add(label);
+        panel.add(Box.createRigidArea(new Dimension(10, 0)));
+        entry2 = new JTextField("",10);
+        panel.add(entry2);
         panel.add(Box.createRigidArea(new Dimension(10, 0)));
 
         reply2 = new JTextField("", 10);
@@ -198,7 +205,7 @@ public class GUI_Client implements ActionListener{
 
 
             HelpMessageRequest helpRequest = HelpMessageRequest.newBuilder()
-                    .setHelpRequest(entry2.getText())
+                    .setHelpRequest("Help me!")
                     .build();
 
             HelpMessageResponse response = service1Client.helpMessage(helpRequest);
