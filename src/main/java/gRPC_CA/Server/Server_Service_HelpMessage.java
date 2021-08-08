@@ -13,6 +13,7 @@ public class Server_Service_HelpMessage {
                 //adding the server implementation
                 .addService(new Service_1_impl_1())
                 .addService(new Service_1_impl_2())
+                .addService(new Service_2_impl_1())
                 .build();
 
         //Start the server

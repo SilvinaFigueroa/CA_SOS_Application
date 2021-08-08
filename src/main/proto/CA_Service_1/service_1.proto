@@ -20,16 +20,7 @@ message HelpMessageResponse{
 message UserDataRequest{
 
   string textSituation = 1;
-
-        enum EmergencySituation{
-
-            MedicalAssistance  =0;
-            CarAccident =1;
-            DomesticViolence = 2;
-            Other = 3;
-        }
-
-    EmergencySituation emergencySit = 2;
+  string  emergencySituation = 2;
 }
 
 

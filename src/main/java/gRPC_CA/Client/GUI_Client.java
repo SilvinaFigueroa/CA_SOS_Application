@@ -3,8 +3,10 @@ package gRPC_CA.Client;
 import com.proto.CA_Service_1.HelpMessageRequest;
 import com.proto.CA_Service_1.HelpMessageResponse;
 import com.proto.CA_Service_1.HelpMessageServiceGrpc;
+import com.proto.CA_Service_1.InformationGrpc;
 import com.proto.CA_Service_1.UserDataRequest;
 import com.proto.CA_Service_1.UserDataResponse;
+import com.proto.CA_Service_1.UserLocationRequest;
 import gRPC_CA.Server.Service_1_impl_1;
 import gRPC_CA.Server.Service_1_impl_2;
 import io.grpc.ManagedChannel;
@@ -16,16 +18,22 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 
 public class GUI_Client implements ActionListener {
 
-    private JTextField entry1, reply1;
+    //private JTextField entry1, reply1;
     private JTextField entry2, reply2;
     private JTextField entry3, reply3;
     private JTextField entry4, reply4;
+    private String situation;
+    private String areYouAlone = "";
+    private String location = "";
+
 
     public static void main(String[] args) {
 
@@ -43,54 +51,91 @@ public class GUI_Client implements ActionListener {
         JLabel label = new JLabel("Enter value");
         panel.add(label);
         panel.add(Box.createRigidArea(new Dimension(10, 0)));
-        entry1 = new JTextField("", 10);
-        panel.add(entry1);
-        panel.add(Box.createRigidArea(new Dimension(10, 0)));
+
+//        entry1 = new JTextField("", 10);
+//        panel.add(entry1);
+//        panel.add(Box.createRigidArea(new Dimension(10, 0)));
 
         JButton button = new JButton("Invoke Service 1");
         button.addActionListener(this);
         panel.add(button);
-        panel.add(Box.createRigidArea(new Dimension(10, 0)));
 
-        reply1 = new JTextField("", 10);
-        reply1.setEditable(false);
-        panel.add(reply1);
+
+//        reply1 = new JTextField("", 10);
+//        reply1.setEditable(false);
+//        panel.add(reply1);
 
         panel.setLayout(boxlayout);
+
 
         return panel;
 
     }
 
+
     private JPanel getService2JPanel() {
 
         JPanel panel = new JPanel();
 
+
         BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.X_AXIS);
 
-        JComboBox comboOperation = new JComboBox();
-        comboOperation.setModel(new DefaultComboBoxModel(new String[]{"Medical Assistance", "Car Accident", "Domestic Violence", "Other"}));
-        panel.add(comboOperation);
+        JComboBox comboSituation = new JComboBox();
+        panel.add(comboSituation);
+        comboSituation.setModel(new DefaultComboBoxModel(new String []{"Select a situation", "Car Accident","Medical Assistance", "Domestic Violence", "Other"}));
 
-        int situation = comboOperation.getSelectedIndex();
-        UserDataRequest.EmergencySituation operation = UserDataRequest.EmergencySituation.forNumber(situation);
+        comboSituation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //getService2JPanel();
+                situation = String.valueOf(comboSituation.getSelectedItem());
+            }
+        });
+
+        panel.add(Box.createRigidArea(new Dimension(10, 0)));
+
+
+        JComboBox comboYesNo = new JComboBox();
+        panel.add(comboYesNo);
+        comboYesNo.setModel(new DefaultComboBoxModel(new String []{"Are you alone?","Yes", "No"}));
+
+        comboYesNo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               // getService2JPanel();
+
+                areYouAlone = String.valueOf(comboYesNo.getSelectedItem());
+            }
+        });
+
+//        JLabel label = new JLabel("Enter your name");
+//        panel.add(label);
+//        panel.add(Box.createRigidArea(new Dimension(10, 0)));
+//
+//        entry2 = new JTextField("test", 10);
+//        panel.add(entry2);
+//
+//        panel.add(Box.createRigidArea(new Dimension(10, 0)));
+//
+//
+//        reply2 = new JTextField("", 10);
+//        reply2.setEditable(false);
+//        reply2.setText(userName);
+//        panel.add(reply2);
+//
+
+
+//        reply2 = new JTextField("", 10);
+//        reply2.setEditable(false);
+//        panel.add(reply2);
+//
+        panel.setLayout(boxlayout);
+
         panel.add(Box.createRigidArea(new Dimension(10, 0)));
 
         JButton button = new JButton("Invoke Service 2");
         button.addActionListener(this);
         panel.add(button);
-        JLabel label = new JLabel("Enter value");
-        panel.add(label);
-        panel.add(Box.createRigidArea(new Dimension(10, 0)));
-        entry2 = new JTextField("", 10);
-        panel.add(entry2);
-        panel.add(Box.createRigidArea(new Dimension(10, 0)));
-
-        reply2 = new JTextField("", 10);
-        reply2.setEditable(false);
-        panel.add(reply2);
-
-        panel.setLayout(boxlayout);
 
         return panel;
 
@@ -102,22 +147,36 @@ public class GUI_Client implements ActionListener {
 
         BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.X_AXIS);
 
-        JLabel label = new JLabel("Enter value");
-        panel.add(label);
-        panel.add(Box.createRigidArea(new Dimension(10, 0)));
-        entry3 = new JTextField("", 10);
-        panel.add(entry3);
+
+        JComboBox comboLocation = new JComboBox();
+        panel.add(comboLocation);
+        comboLocation.setModel(new DefaultComboBoxModel(new String []{"Select your Location","Dublin", "Galway","Cork"}));
+
+        comboLocation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                location = String.valueOf(comboLocation.getSelectedItem());
+            }
+        });
+
+//        JLabel label = new JLabel("Enter value");
+//        panel.add(label);
+//        panel.add(Box.createRigidArea(new Dimension(10, 0)));
+//        entry3 = new JTextField("", 10);
+//        panel.add(entry3);
+//        panel.add(Box.createRigidArea(new Dimension(10, 0)));
+
         panel.add(Box.createRigidArea(new Dimension(10, 0)));
 
         JButton button = new JButton("Invoke Service 3");
         button.addActionListener(this);
         panel.add(button);
-        panel.add(Box.createRigidArea(new Dimension(10, 0)));
+        panel.add(Box.createRigidArea(new Dimension(15, 0)));
 
-        reply3 = new JTextField("", 10);
-        reply3.setEditable(false);
-        panel.add(reply3);
-
+//        reply3 = new JTextField("", 10);
+//        reply3.setEditable(false);
+//        panel.add(reply3);
+//
         panel.setLayout(boxlayout);
 
         return panel;
@@ -202,7 +261,6 @@ public class GUI_Client implements ActionListener {
 
             // creating the protocol buffer messages
 
-
             HelpMessageRequest helpRequest = HelpMessageRequest.newBuilder()
                     .setHelpRequest("Help me!")
                     .build();
@@ -210,7 +268,7 @@ public class GUI_Client implements ActionListener {
             HelpMessageResponse response = service1Client.helpMessage(helpRequest);
             JOptionPane.showMessageDialog(null, "Help Requested");
 
-          //>> SERVICE 1 IMPLEMENTATION 2  SERVER STREAMING
+          //>> SERVICE 1 IMPLEMENTATION 2  CLIENT STREAMING
 
         } else if (label.equals("Invoke Service 2")) {
             System.out.println("service 2 to be invoked ...");
@@ -226,6 +284,7 @@ public class GUI_Client implements ActionListener {
             // Creating the stub -
             HelpMessageServiceGrpc.HelpMessageServiceStub serviceClientStream = HelpMessageServiceGrpc.newStub(channel);
 
+
             //Creating an instance of StreamObserver to send the response with serviceClientStream
             StreamObserver<UserDataRequest> requestStreamObserver = serviceClientStream.userData(new StreamObserver<UserDataResponse>() {
 
@@ -235,11 +294,15 @@ public class GUI_Client implements ActionListener {
 
                     System.out.println("Response from the server receive");
                     System.out.println(value.getSituationResponse());
+                    System.out.println(situation);
+
+
+
 
                     JFrame frame;
                     frame = new JFrame();
                     // As a response, we pass the value set on the server when we build "OnCompleted"
-                    JOptionPane.showMessageDialog(frame, value.getSituationResponse());
+                    JOptionPane.showMessageDialog(frame,value.getSituationResponse());
 
                 }
 
@@ -261,16 +324,20 @@ public class GUI_Client implements ActionListener {
             // Messages send to the response observer
             //Streaming message number 1
 
+            System.out.println("Situation " + situation);
             requestStreamObserver.onNext(UserDataRequest.newBuilder()
-                    .setEmergencySit(UserDataRequest.getDefaultInstance().getEmergencySit())
+                    .setEmergencySituation(situation)
                     .build());
             System.out.println("Message 1");
             //Streaming message number 2
 
             requestStreamObserver.onNext(UserDataRequest.newBuilder()
-                    .setTextSituation(UserDataRequest.getDefaultInstance().getTextSituation())
+                    .setTextSituation(areYouAlone)
                     .build());
+
             System.out.println("Message 2");
+
+
 
             // sent to the server that the client is done sending messages.
            requestStreamObserver.onCompleted();
@@ -282,23 +349,31 @@ public class GUI_Client implements ActionListener {
                 interruptedException.printStackTrace();
             }
 
-//            /*
-//             *
-//             *
-//            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052).usePlaintext().build();
-//            Service2Grpc.Service2BlockingStub blockingStub = Service2Grpc.newBlockingStub(channel);
-//
-//            //preparing message to send
-//            ds.service2.RequestMessage request = ds.service2.RequestMessage.newBuilder().setText(entry2.getText()).build();
-//
-//            //retreving reply from service
-//            ds.service2.ResponseMessage response = blockingStub.service2Do(request);
-//
-//            reply2.setText( String.valueOf( response.getLength()) );
-//
-//        }else if (label.equals("Invoke Service 3")) {
-//            System.out.println("service 3 to be invoked ...");
-//
+            //>> SERVICE 2 IMPLEMENTATION 1  SERVER STREAMING
+
+        }else if (label.equals("Invoke Service 3")) {
+            System.out.println("service 3 to be invoked ...");
+
+            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052)
+                    .usePlaintext() // plaint text for security
+                    .build();
+            System.out.println("Channel build");
+
+            InformationGrpc.InformationBlockingStub infoClient = InformationGrpc.newBlockingStub(channel);
+
+            infoClient.userLocation(UserLocationRequest.newBuilder()
+                .setUserLocation(location)
+                    .build())
+                    .forEachRemaining(userLocationResponse -> {
+
+                        JFrame frame;
+                        frame = new JFrame();
+
+                        JOptionPane.showMessageDialog(frame,userLocationResponse.getLocation());
+
+                    });
+
+
 //
 //            /*
 //             *

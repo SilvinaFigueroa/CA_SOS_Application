@@ -6,7 +6,9 @@ import com.proto.CA_Service_1.UserDataResponse;
 import io.grpc.stub.StreamObserver;
 
 public class Service_1_impl_2 extends HelpMessageServiceGrpc.HelpMessageServiceImplBase {
+    public static void main(String[] args) {
 
+    }
 
 
     @Override
@@ -14,15 +16,25 @@ public class Service_1_impl_2 extends HelpMessageServiceGrpc.HelpMessageServiceI
         // creating the StreamObserver -
         StreamObserver<UserDataRequest> requestStreamObserver = new StreamObserver<UserDataRequest>() {
 
-            String situationResponse = "";
+            String userResponse = "";
+            String serverResponse = "";
 
             @Override
 
             //The client sent a message
             public void onNext(UserDataRequest value) {
-                situationResponse = "Situation informed :" + String.valueOf(UserDataRequest.getDefaultInstance().getEmergencySit())+ "\n" +
-                        String.valueOf(UserDataRequest.getDefaultInstance().getTextSituation());
-            }
+
+                userResponse = value.getEmergencySituation();
+
+                if (userResponse.equalsIgnoreCase("Medical Assistance")) {
+                    serverResponse = "You are not alone, then, " + value.getTextSituation() + "\n" +
+                            "Medical Assistance Phone Number  12345678";
+                }
+                    else{
+
+                    }
+                }
+
 
             @Override
             // Error handling
@@ -34,15 +46,12 @@ public class Service_1_impl_2 extends HelpMessageServiceGrpc.HelpMessageServiceI
             // Client finished sending messages
             // Return response (responseObserver)
 
-//            MedicalAssistance  =0;
-//            CarAccident =1;
-//            DomesticViolence = 2;
-//            Other = 3;
-
             public void onCompleted() {
                 responseObserver.onNext(UserDataResponse.newBuilder().
-                        setSituationResponse(situationResponse)
+                        setSituationResponse(serverResponse)
                         .build());
+                System.out.println(userResponse);
+                System.out.println(serverResponse);
 
                 responseObserver.onCompleted();
 
