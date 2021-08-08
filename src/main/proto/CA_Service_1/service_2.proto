@@ -21,6 +21,7 @@ message UserLocationResponse{
 
 message OptionRequest{
   string serviceOption =1;
+  string typeOption = 2;
 
 }
 
@@ -36,7 +37,7 @@ service Information{
 // Server Streaming
   rpc UserLocation (UserLocationRequest) returns (stream UserLocationResponse) {}
 
-// Bidirectional
+// Bidirectional Streaming
   rpc Option (stream OptionRequest) returns (stream OptionResponse) {}
 
     }

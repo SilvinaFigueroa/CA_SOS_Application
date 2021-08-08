@@ -4,16 +4,17 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import java.io.IOException;
 
-public class Server_Service_HelpMessage {
+public class Server_Service {
     public static void main(String[] args) throws IOException, InterruptedException { // IOException for server start and awaitTermination
         System.out.println("Grpc Server setup");
 
         //Build the server
-        Server server = ServerBuilder.forPort(50052)
+        Server server = ServerBuilder.forPort(50051)
                 //adding the server implementation
                 .addService(new Service_1_impl_1())
                 .addService(new Service_1_impl_2())
                 .addService(new Service_2_impl_1())
+                .addService(new Service_2_impl_2())
                 .build();
 
         //Start the server

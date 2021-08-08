@@ -21,7 +21,7 @@ public class Service_2_impl_1 extends InformationGrpc.InformationImplBase {
         try {
 
             for (int i = 0; i <= 3; i++) {
-                String UserResponse = userLocation + "\n" + emergencyCentre[i];
+                String UserResponse = "Location: " + userLocation + "\n" + emergencyCentre[i];
 
                 UserLocationResponse response = UserLocationResponse.newBuilder()
                         .setLocation(UserResponse)
