@@ -40,3 +40,4 @@ service HelpMessageService {
     rpc UserData (stream UserDataRequest) returns (UserDataResponse) {};
 
 }
+
