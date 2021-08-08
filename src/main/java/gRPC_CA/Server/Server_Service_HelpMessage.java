@@ -12,6 +12,7 @@ public class Server_Service_HelpMessage {
         Server server = ServerBuilder.forPort(50052)
                 //adding the server implementation
                 .addService(new Service_1_impl_1())
+                .addService(new Service_1_impl_2())
                 .build();
 
         //Start the server
