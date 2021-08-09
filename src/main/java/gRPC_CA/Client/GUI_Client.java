@@ -259,7 +259,21 @@ public class GUI_Client implements ActionListener {
 
         } else if (label.equals("Service 2")) {
 
-            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50055)
+
+            Logger logger = Logger.getLogger(GUI_Client.class.getName());
+
+            ServiceInfo serviceInfo;
+            String service_type = "_clientstreaming._tcp.local.";
+            //Now retrieve the service info - all we are supplying is the service type
+            serviceInfo = ServerDiscovery.run(service_type);
+            //Use the serviceInfo to retrieve the port
+            int port = serviceInfo.getPort();
+            System.out.println(port);
+            String host = "localhost";
+            // Port 50055
+
+
+            ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                     .usePlaintext() // plaint text for security
                     .build();
             System.out.println("Channel build");
@@ -335,7 +349,20 @@ public class GUI_Client implements ActionListener {
 
         }else if (label.equals("Service 3")) {
 
-            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50053)
+
+            Logger logger = Logger.getLogger(GUI_Client.class.getName());
+
+            ServiceInfo serviceInfo;
+            String service_type = "_serverStreaming._tcp.local.";
+            //Now retrieve the service info - all we are supplying is the service type
+            serviceInfo = ServerDiscovery.run(service_type);
+            //Use the serviceInfo to retrieve the port
+            int port = serviceInfo.getPort();
+            System.out.println(port);
+            String host = "localhost";
+            // Port 50053
+
+            ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                     .usePlaintext() // plaint text for security
                     .build();
             System.out.println("Channel build");
@@ -359,7 +386,19 @@ public class GUI_Client implements ActionListener {
 
         }else if (label.equals("Service 4")) {
 
-            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50054)
+            Logger logger = Logger.getLogger(GUI_Client.class.getName());
+
+            ServiceInfo serviceInfo;
+            String service_type = "_biStreaming._tcp.local.";
+            //Now retrieve the service info - all we are supplying is the service type
+            serviceInfo = ServerDiscovery.run(service_type);
+            //Use the serviceInfo to retrieve the port
+            int port = serviceInfo.getPort();
+            System.out.println(port);
+            String host = "localhost";
+            // Port 50054
+
+            ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                     .usePlaintext() // plaint text for security
                     .build();
             System.out.println("Channel build");
