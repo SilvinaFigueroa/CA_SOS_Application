@@ -58,7 +58,7 @@ public class ServerDiscovery {
 
     }
 
-    //option 1
+
     private static class MyServiceListener implements ServiceListener {
 
         private int port;

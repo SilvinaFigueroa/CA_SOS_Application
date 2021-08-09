@@ -27,13 +27,15 @@ public class Service_1_impl_2 extends HelpMessageServiceGrpc.HelpMessageServiceI
                 userResponse = value.getEmergencySituation();
 
                 if (userResponse.equalsIgnoreCase("Medical Assistance")) {
-                    serverResponse = "You are not alone, then, " + value.getTextSituation() + "\n" +
-                            "Medical Assistance Phone Number  12345678";
+                    serverResponse = "Your are alone? " + value.getTextSituation() + "\n" +
+                            " Please, call Medical Assistance Phone Number  12345678";
                 }
                     else{
+                        serverResponse = "Your are alone? " + value.getTextSituation() + "\n" +
+                            " Please, call Medical Assistance Phone Number  12345678";
+                }
 
                     }
-                }
 
 
             @Override

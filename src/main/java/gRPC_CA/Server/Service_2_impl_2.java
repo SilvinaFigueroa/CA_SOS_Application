@@ -16,12 +16,11 @@ public class Service_2_impl_2 extends InformationGrpc.InformationImplBase{
            @Override
            public void onNext(OptionRequest value) {
                String userOption = value.getServiceOption();
-               String typeOption = value.getTypeOption();
-
                OptionResponse optionResponse = OptionResponse.newBuilder().setServiceResponse(userOption).build();
-               OptionResponse typeResponse = OptionResponse.newBuilder().setServiceResponse(typeOption).build();
-
                responseObserver.onNext(optionResponse);
+
+               String typeOption = value.getTypeOption();
+               OptionResponse typeResponse = OptionResponse.newBuilder().setServiceResponse(typeOption).build();
                responseObserver.onNext(typeResponse);
            }
 

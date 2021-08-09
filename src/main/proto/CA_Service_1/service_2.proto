@@ -32,7 +32,7 @@ message OptionResponse{
 }
 
 
-service Information{
+service InformationService{
 
 // Server Streaming
   rpc UserLocation (UserLocationRequest) returns (stream UserLocationResponse) {}

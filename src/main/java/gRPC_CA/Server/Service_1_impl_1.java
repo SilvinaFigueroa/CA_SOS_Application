@@ -18,7 +18,7 @@ public class Service_1_impl_1 extends HelpMessageServiceGrpc.HelpMessageServiceI
         //prepare the value to be set back
         String helpRequest = request.getHelpRequest();
         HelpMessageResponse helpResponse = HelpMessageResponse.newBuilder()
-                .setHelpResponse(JOptionPane.showInputDialog("Please,give us more information"))
+                .setHelpResponse(JOptionPane.showInputDialog("Please,give us more information in the space below and click ok!"))
                 .build();
 
         responseObserver.onNext(helpResponse);
