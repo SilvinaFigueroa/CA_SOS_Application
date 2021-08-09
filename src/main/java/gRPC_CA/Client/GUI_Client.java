@@ -244,7 +244,7 @@ public class GUI_Client implements ActionListener {
 
         } else if (label.equals("Service 2")) {
 
-            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051)
+            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50055)
                     .usePlaintext() // plaint text for security
                     .build();
             System.out.println("Channel build");
@@ -320,7 +320,7 @@ public class GUI_Client implements ActionListener {
 
         }else if (label.equals("Service 3")) {
 
-            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051)
+            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50053)
                     .usePlaintext() // plaint text for security
                     .build();
             System.out.println("Channel build");
@@ -344,7 +344,7 @@ public class GUI_Client implements ActionListener {
 
         }else if (label.equals("Service 4")) {
 
-            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051)
+            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50054)
                     .usePlaintext() // plaint text for security
                     .build();
             System.out.println("Channel build");

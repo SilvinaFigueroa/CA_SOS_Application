@@ -19,11 +19,9 @@ public class Service_2_impl_2 extends InformationGrpc.InformationImplBase{
                String typeOption = value.getTypeOption();
 
                OptionResponse optionResponse = OptionResponse.newBuilder().setServiceResponse(userOption).build();
-
-               responseObserver.onNext(optionResponse);
-
                OptionResponse typeResponse = OptionResponse.newBuilder().setServiceResponse(typeOption).build();
 
+               responseObserver.onNext(optionResponse);
                responseObserver.onNext(typeResponse);
            }
 
