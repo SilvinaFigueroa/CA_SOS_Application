@@ -1,21 +1,22 @@
 package gRPC_CA.Client;
 
 import com.proto.CA_Service_1.*;
-import gRPC_CA.Server.Service_1_impl_1;
-import gRPC_CA.Server.Service_1_impl_2;
+import gRPC_CA.Server.Server1imp_1;
+import gRPC_CA.Server.ServerDiscovery;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+import javax.jmdns.ServiceInfo;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 
 public class GUI_Client implements ActionListener {
@@ -223,7 +224,21 @@ public class GUI_Client implements ActionListener {
         //>> SERVICE 1 IMPLEMENTATION 1 UNARY
         if (label.equals("Get Help!")) {
 
-            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051)
+
+             Logger logger = Logger.getLogger(GUI_Client.class.getName());
+
+                ServiceInfo serviceInfo;
+                String service_type = "_unary._tcp.local.";
+                //Now retrieve the service info - all we are supplying is the service type
+                serviceInfo = ServerDiscovery.run(service_type);
+                //Use the serviceInfo to retrieve the port
+                int port = serviceInfo.getPort();
+                System.out.println(port);
+                String host = "localhost";
+                // Port 50051
+
+
+            ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                     .usePlaintext() // plaint text for security
                     .build();
             System.out.println("Channel build");
